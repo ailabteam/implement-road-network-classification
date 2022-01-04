@@ -129,7 +129,7 @@ def PlotCity(dist, grid_path, save_path, dpi=300, format='png'):
     :return: None
     '''
     mkdir(save_path)
-    grids = gpd.read_file(grid_path).set_index('osm_id').to_crs(epsg=4326)
+    grids = gpd.read_file(grid_path).set_index('id').to_crs(epsg=4326)
     grids['coord'] = [(centroid.y, centroid.x) for centroid in grids.geometry.centroid]
     PlotList(grids, dist, save_path, dpi, format)
     print('complete!')
