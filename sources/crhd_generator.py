@@ -89,9 +89,9 @@ def PlotCRHD(center_point, dist, name=None, save_path=None, dpi=300, format='png
         return plt.gcf()
 
 def PlotCRHD_grid(idx, center_point, dist, save_path, dpi=300, format='png'):
-
     filename = os.path.join(save_path, f'{idx}.{format}')
     G = ox.graph_from_point(center_point=center_point, network_type='all', dist=dist)
+    print('ok')
     gdf = ox.graph_to_gdfs(G, nodes=False, edges=True)
     gdf.highway = gdf.highway.map(lambda x: x[0] if isinstance(x, list) else x)
     fig, ax = plt.subplots(1, 1, figsize=(6, 6))
@@ -99,7 +99,8 @@ def PlotCRHD_grid(idx, center_point, dist, save_path, dpi=300, format='png'):
     for stype in street_types:
         if (gdf.highway==stype).any():
             gdf[gdf.highway==stype].plot(ax=ax, linewidth=street_widths[stype], edgecolor=street_colors_w[stype])
-
+    
+    
     plt.axis('off')
     plt.savefig(filename, dpi=dpi, bbox_inches='tight',pad_inches=0, format=format)
     plt.close()
