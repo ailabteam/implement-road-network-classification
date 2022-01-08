@@ -12,7 +12,7 @@ from keras.layers import Input, merge, ZeroPadding2D, concatenate
 from keras.layers.core import Dense, Dropout, Activation
 from keras.layers.convolutional import Convolution2D
 from keras.layers.pooling import AveragePooling2D, GlobalAveragePooling2D, MaxPooling2D
-from keras.layers.normalization import BatchNormalization
+from keras.layers.normalization import layer_normalization
 
 import six
 from keras.regularizers import l2
@@ -247,6 +247,11 @@ class MODEL(object):
 class ResnetBuilder(object):
     # @staticmethod
     def build(self,config, block_fn, repetitions):
+        
+        print('see config')
+        print(config.classNumber)
+        
+        
         """Builds a custom ResNet like architecture.
         Args:
             input_shape: The input shape in the form (nb_channels, nb_rows, nb_cols)
@@ -288,6 +293,7 @@ class ResnetBuilder(object):
 
         model = Model(inputs=input, outputs=dense)
         # model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+        
         return model
 
     def build_myResNet(self,config, block_fn, repetitions_a, repetitions_b):
@@ -352,7 +358,7 @@ class ResnetBuilder(object):
         combined = concatenate([flatten1_a, flatten1_b])
         dense = Dense(units=num_outputs,
                       activation="softmax")(combined)
-
+        
         model = Model(inputs=[inputA,inputB], outputs=dense)
         # model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
         return model

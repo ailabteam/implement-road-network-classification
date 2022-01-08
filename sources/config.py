@@ -34,7 +34,10 @@ class DefaultConfig():
     normal_size = 224
     epochs = 10
     batch_size = 2
-    classNumber = len(label_imgs)  # see dataset
+    #classNumber = len(label_imgs)  # see dataset
+    #noted
+    classNumber = 4 #
+    
     channles = 3  # or 3 or 1 or 6
     lr = 0.001
 

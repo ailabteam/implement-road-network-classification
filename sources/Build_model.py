@@ -31,6 +31,7 @@ class Build_model(object):
     def build_model(self):
         model = ResnetBuilder().build_resnet34(self.config)
         model = self.model_compile(model)
+        print('build model successfull')
         return model
 
     def build_mymodel(self):

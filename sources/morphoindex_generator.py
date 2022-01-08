@@ -193,7 +193,10 @@ class prob_calculator():
         if not self.model:
             raise Exception('No model is loaded.')
         grids = gpd.read_file(grid_path)
-        grids.set_index('id', inplace=True)
+        #grids.set_index('id', inplace=True)
+        
+        grids.set_index('Id', inplace=True)
+        
         grids[['Prob_O', 'Prob_N', 'Prob_G', 'Prob_R']] = None
 
         imgNameList = grids.index.to_list()
